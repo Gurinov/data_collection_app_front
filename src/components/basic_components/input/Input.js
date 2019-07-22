@@ -22,7 +22,7 @@ class Input extends React.Component {
             <div className="label text-left">
                 {label}
                 <Form.Input placeholder={this.props.placeholder} name={this.props.name} type={this.props.type}
-                            value={this.props.value} onChange={this.props.onChange}/>
+                            defaultValue={this.props.value} onChange={this.props.onChange}/>
                 {error}
             </div>
         )

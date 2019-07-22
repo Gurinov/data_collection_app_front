@@ -16,6 +16,7 @@ class Signup extends React.Component {
             confirmPassword: "",
             firstName: "",
             lastName: "",
+            phone: "",
             emailError: "",
             passwordError: "",
             confirmPasswordError: ""

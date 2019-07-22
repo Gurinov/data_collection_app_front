@@ -3,6 +3,15 @@ import axios from 'axios';
 class UserService {
     LOGIN_END_POINT = 'http://localhost:8080/users/login';
     REGISTRATION_END_POINT = 'http://localhost:8080/users/signup';
+    EDIT_PROFILE_END_POINT = 'http://localhost:8080/users';
+    GET_BY_TOKEN_END_POINT = 'http://localhost:8080/users/byToken';
+    CHANGE_PASSWORD_END_POINT = 'http://localhost:8080/users/password';
+
+    findUserByToken(){
+        return axios.get(this.GET_BY_TOKEN_END_POINT,{headers: {
+                "Authorization": this.getToken()
+            }});
+    }
 
     signin(login, password) {
         let loginInfo = {
@@ -21,6 +30,29 @@ class UserService {
             phone: phone
         };
         return axios.post(this.REGISTRATION_END_POINT, user);
+    }
+
+    editProfile(email, firstName, lastName, phone) {
+        let user = {
+            email: email,
+            password: "",
+            firstName: firstName,
+            lastName: lastName,
+            phone: phone
+        };
+        return axios.put(this.EDIT_PROFILE_END_POINT, user, {headers: {
+                "Authorization": this.getToken()
+            }});
+    }
+
+    changePassword(currentPassword, newPassword) {
+        let passwords = {
+            currentPassword: currentPassword,
+            newPassword: newPassword
+        };
+        return axios.put(this.CHANGE_PASSWORD_END_POINT, passwords, {headers: {
+                "Authorization": this.getToken()
+            }});
     }
 
     saveToken(token) {

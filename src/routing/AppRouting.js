@@ -9,6 +9,8 @@ class AppRouting extends React.Component {
                 <Switch>
                     <Route path={"/login"} component={Account}/>
                     <Route path={"/signup"} component={Account}/>
+                    <Route path={"/edit-profile"} component={Account}/>
+                    <Route path={"/change-password"} component={Account}/>
                     {/*<Route component={NotFound} />*/}
                 </Switch>
             </Router>
