@@ -45,3 +45,8 @@ p {
     flex-direction: row;
     justify-content: space-around;
 }
+
+.checkboxes {
+    display: flex;
+    justify-content: space-between;
+}

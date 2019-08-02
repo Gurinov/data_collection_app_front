@@ -4,6 +4,7 @@ import Input from "../basic_components/input/Input";
 import Combobox from "../basic_components/combobox/Combobox";
 import Textarea from "../basic_components/textarea/Textarea";
 import FieldService from "../../service/FieldService";
+import Checkbox from "../basic_components/checkbox/Checkbox";
 
 class AddEditFieldModal extends React.Component {
 
@@ -40,6 +41,7 @@ class AddEditFieldModal extends React.Component {
         this.isValidForm = this.isValidForm.bind(this);
         this.isValidLabel = this.isValidLabel.bind(this);
         this.isValidOptions = this.isValidOptions.bind(this);
+        this.handleChangeChecked = this.handleChangeChecked.bind(this);
     }
 
     handleClose() {
@@ -69,6 +71,15 @@ class AddEditFieldModal extends React.Component {
             });
         }
     }
+
+    handleChangeChecked = name => event => {
+        this.setState({
+            field: {
+                ...this.state.field,
+                [name]: event.target.checked
+            }
+        });
+    };
 
     onSaveOrEditField() {
         if (this.isValidForm()) {
@@ -196,6 +207,15 @@ class AddEditFieldModal extends React.Component {
                             </div>
                         </div>
                         {options}
+                        <div className="row form__element ">
+                            <div className="col-md-6 offset-md-3 checkboxes">
+                                <Checkbox name="required" label="Required" active={this.state.field.required}
+                                          handleChange={this.handleChangeChecked('required')}/>
+                                <Checkbox name="active" label="Is Active" active={this.state.field.active}
+                                          handleChange={this.handleChangeChecked('active')}/>
+                            </div>
+                        </div>
+
                     </Modal.Body>
                     <Modal.Footer>
                         <Button variant="secondary" onClick={this.handleClose}>
