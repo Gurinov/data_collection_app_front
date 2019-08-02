@@ -1,0 +1,47 @@
+body {
+    background: #fafafa;
+    margin: 0;
+    padding: 0;
+}
+
+p {
+    margin: 0;
+}
+
+.table {
+    margin: 0;
+    border: 2px solid #ffffff;
+    border-collapse: collapse;
+}
+
+.custom_table {
+    margin: 20px auto;
+    background: #ffffff;
+    border: 2px solid #f1f1f1;
+    border-radius: 1px;
+}
+
+.table__element {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    align-content: center;
+    justify-content: space-between;
+    border-bottom: 1px solid #e0e1e5;
+    padding: 10px 20px;
+}
+
+.table__element__label {
+    text-align: center;
+    font-size: 2vh;
+}
+
+.table__body {
+    margin: 0 20px;
+}
+
+.table__buttons {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}

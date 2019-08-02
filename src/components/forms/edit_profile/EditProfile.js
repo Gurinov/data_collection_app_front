@@ -22,7 +22,6 @@ class EditProfile extends React.Component{
 
         UserService.findUserByToken().then(
             (response) => {
-                console.log(response.data)
                 this.setState({
                     email: !!response.data.email ? response.data.email : "",
                     firstName: !!response.data.firstName ? response.data.firstName : "",

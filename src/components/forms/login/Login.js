@@ -2,9 +2,9 @@ import React from "react";
 import Input from "../../basic_components/input/Input";
 import Logo from "../../basic_components/logo/Logo";
 import Checkbox from "../../basic_components/checkbox/Checkbox";
-import {Link} from "react-router-dom";
+import {Link, Redirect} from "react-router-dom";
 import {Button} from "bootstrap-4-react";
-import UserService from "../../../service/UserService"
+import UserService from "../../../service/UserService";
 import is from 'is_js';
 
 class Login extends React.Component {
@@ -35,14 +35,13 @@ class Login extends React.Component {
             UserService.signin(this.state.email, this.state.password).then(
                 (response) => {
                     UserService.saveToken(response.data);
-                    this.props.history.push('/fields/');
+                    this.props.history.push('/fields');
                 },
                 (error) => {
                     this.setState({emailError: "Invalid email or password"});
                 }
             );
         }
-
     }
 
     isValidForm() {
@@ -72,6 +71,10 @@ class Login extends React.Component {
     }
 
     render() {
+        if (UserService.getToken()) {
+            return <Redirect to="/fields"/>
+        }
+
         return (
             <div className="container form">
                 <div className="form__body">
@@ -90,7 +93,7 @@ class Login extends React.Component {
                                onChange={this.handleChange} error={this.state.passwordError} required/>
                     </div>
                     <div className="form_body__element inline_element">
-                        <Checkbox floaat="right"/>
+                        <Checkbox floaat="right" name="Remember me"/>
                         <Link to="/account/forgot-password">Forgot your password?</Link>
                     </div>
                     <div className="form_body__element">

@@ -1,16 +1,22 @@
 import React from "react";
-import {BrowserRouter as Router, Route, Switch} from "react-router-dom";
-import Account from "../components/account/Account";
+import {Router, Route, Switch} from "react-router-dom";
+import FormMain from "../components/forms/FormMain";
+import TablesMain from "../components/tables/TablesMain";
+import { createBrowserHistory } from "history";
+
+const customHistory = createBrowserHistory();
 
 class AppRouting extends React.Component {
     render() {
         return (
-            <Router>
+            <Router history={customHistory}>
                 <Switch>
-                    <Route path={"/login"} component={Account}/>
-                    <Route path={"/signup"} component={Account}/>
-                    <Route path={"/edit-profile"} component={Account}/>
-                    <Route path={"/change-password"} component={Account}/>
+                    <Route path={"/login"} component={FormMain}/>
+                    <Route path={"/signup"} component={FormMain}/>
+                    <Route path={"/edit-profile"} component={FormMain}/>
+                    <Route path={"/change-password"} component={FormMain}/>
+
+                    <Route path={"/fields"} component={TablesMain}/>
                     {/*<Route component={NotFound} />*/}
                 </Switch>
             </Router>

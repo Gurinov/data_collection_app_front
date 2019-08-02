@@ -2,15 +2,15 @@ import React from "react";
 import {Route, Switch} from "react-router";
 import Login from "./login/Login";
 import Signup from "./signup/Signup";
-import {BrowserRouter as Router} from "react-router-dom";
-import "./Account.css"
+import {Router} from "react-router-dom";
+import "./FormMain.css"
 import EditProfile from "./edit_profile/EditProfile";
-import ChangePassword from "./chenge_passwword/ChangePassword";
+import ChangePassword from "./chenge_password/ChangePassword";
 
-class Account extends React.Component{
+class FormMain extends React.Component{
     render() {
         return (
-            <Router>
+            <Router history={this.props.history}>
                 <Switch>
                     <Route path={"/login"} component={Login}/>
                     <Route path={"/signup"} component={Signup}/>
@@ -22,4 +22,4 @@ class Account extends React.Component{
     }
 }
 
-export default Account;
+export default FormMain;

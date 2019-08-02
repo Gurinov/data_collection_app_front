@@ -3,7 +3,6 @@ import Header from "../../basic_components/header/Header";
 import Input from "../../basic_components/input/Input";
 import {Button} from "bootstrap-4-react";
 import UserService from "../../../service/UserService";
-import is from "is_js";
 
 class ChangePassword extends React.Component {
 
@@ -23,7 +22,6 @@ class ChangePassword extends React.Component {
 
         UserService.findUserByToken().then(
             (response) => {
-                console.log(response.data)
                 this.setState({
                     email: !!response.data.email ? response.data.email : "",
                     firstName: !!response.data.firstName ? response.data.firstName : "",
@@ -58,7 +56,6 @@ class ChangePassword extends React.Component {
                 }
             );
         }
-
     }
 
     isValidForm() {
