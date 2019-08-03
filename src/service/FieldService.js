@@ -1,15 +1,16 @@
 import axios from 'axios';
 
 class FieldService {
-    FIELDS_END_POINT = 'http://localhost:8080/fields';
+    SERVER_PATH = 'http://192.168.100.138:8080/';
+    FIELDS_END_POINT = this.SERVER_PATH + 'fields';
 
-    getAllFields(page, size) {
+    getFieldsForPagination(page, size) {
         let requestPath = this.FIELDS_END_POINT + "?page=" + page + "&size=" + size;
-        return axios.get(requestPath, {
-            headers: {
-                "Authorization": this.getToken()
-            }
-        });
+        return axios.get(requestPath);
+    }
+
+    getAllFields() {
+        return axios.get(this.FIELDS_END_POINT);
     }
 
     getFieldById(id) {

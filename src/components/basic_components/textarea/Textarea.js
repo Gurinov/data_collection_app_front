@@ -9,7 +9,7 @@ class Textarea extends React.Component {
         if (this.props.label) {
             label =
                 <div>
-                    <label className="text-muted">{this.props.label}</label>
+                    <label className="text-muted custom_input">{this.props.label}</label>
                     {this.props.required ? <label className="text-danger">*</label> : null}
                 </div>
         }
@@ -19,14 +19,15 @@ class Textarea extends React.Component {
         }
 
         return (
-            <div className="label text-left">
+            <div className="text-left">
                 {label}
                 <Form.Control as="textarea"
-                              id={this.props.name}
+                              id={this.props.id}
                               name={this.props.name}
                               rows={this.props.rows}
-                              defaultValue={this.props.defaultValue}
-                              onChange={this.props.handleChange}
+                              value={this.props.defaultValue}
+                              onChange={this.props.onChange}
+                              disabled={this.props.isDisabled}
                 />
                 {error}
             </div>

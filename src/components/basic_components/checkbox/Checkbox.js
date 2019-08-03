@@ -1,15 +1,21 @@
 import React from "react";
-import { Form } from 'bootstrap-4-react';
+import { Form } from 'react-bootstrap';
 
 class Checkbox extends React.Component {
     render() {
-        console.log(this.props.active)
+        console.log(this.props.defaultChecked)
+
         return (
-            <Form.CustomCheckbox id={this.props.name}
-                                 checked={this.props.active}
-                                 onChange={this.props.handleChange}>
-                {this.props.label}
-            </Form.CustomCheckbox>
+            <div className="custom_input">
+                <Form.Check
+                    custom
+                    id={this.props.id}
+                    checked={this.props.defaultChecked === "true"}
+                    onChange={this.props.onChange}
+                    disabled={this.props.isDisabled}
+                    label={this.props.label}
+                />
+            </div>
         );
     }
 }

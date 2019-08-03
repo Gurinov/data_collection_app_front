@@ -9,23 +9,24 @@ class Combobox extends React.Component {
         if (this.props.label) {
             label =
                 <div>
-                    <label className="text-muted">{this.props.label}</label>
+                    <label className="text-muted custom_input">{this.props.label}</label>
                     {this.props.required ? <label className="text-danger">*</label> : null}
                 </div>
         }
         if (this.props.error) {
             error = <label className="text-danger">{this.props.error}</label>
-
         }
 
         return (
-            <div className="label text-left">
+            <div className="text-left">
                 {label}
                 <Form.Control as="select"
-                              id={this.props.name}
+                              id={this.props.id}
                               name={this.props.name}
-                              onChange={this.props.handleChange}
-                              defaultValue={this.props.defaultValue}>
+                              onChange={this.props.onChange}
+                              value={this.props.defaultValue}
+                              disabled={this.props.isDisabled}
+                >
                     {
                         this.props.options.map(option =>
                             <option key={option.text} value={option.text}>{option.text}</option>

@@ -50,3 +50,9 @@ p {
     display: flex;
     justify-content: space-between;
 }
+
+.custom_input {
+    margin-top: 10px;
+    margin-bottom: 4px;
+    padding: 0;
+}

@@ -1,11 +1,29 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="5e8880fc-bb8c-49a4-9801-df1a9e557611" name="Default Changelist" comment="Added a table with the ability to add, delete, modify entity data Field">
+    <list default="true" id="5e8880fc-bb8c-49a4-9801-df1a9e557611" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/src/components/forms/congratulation/Congratulation.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/forms/questionnaire_page/QuestionnairePage.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/service/ResponseService.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/basic_components/checkbox/Checkbox.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/basic_components/checkbox/Checkbox.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/basic_components/combobox/Combobox.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/basic_components/combobox/Combobox.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/basic_components/input/Input.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/basic_components/input/Input.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/basic_components/navigationbar/NavigationBar.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/basic_components/navigationbar/NavigationBar.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/basic_components/radiobutton/Radiobutton.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/basic_components/radiobutton/Radiobutton.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/basic_components/textarea/Textarea.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/basic_components/textarea/Textarea.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/forms/FormMain.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/forms/FormMain.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/forms/FormMain.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/forms/FormMain.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/forms/chenge_password/ChangePassword.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/forms/chenge_password/ChangePassword.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/forms/edit_profile/EditProfile.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/forms/edit_profile/EditProfile.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/forms/login/Login.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/forms/login/Login.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/modal_boxes/AddEditFieldModal.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/modal_boxes/AddEditFieldModal.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/tables/TablesMain.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/tables/TablesMain.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/tables/fields_table/FieldsTable.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/tables/fields_table/FieldsTable.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/routing/AppRouting.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/routing/AppRouting.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/service/FieldService.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/service/FieldService.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/service/UserService.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/service/UserService.js" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -55,8 +73,11 @@
     <property name="last_opened_file_path" value="$USER_HOME$/.npm" />
     <property name="list.type.of.created.stylesheet" value="CSS" />
     <property name="node.js.detected.package.eslint" value="true" />
+    <property name="node.js.detected.package.standard" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
+    <property name="node.js.path.for.package.standard" value="project" />
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
+    <property name="node.js.selected.package.standard" value="" />
     <property name="nodejs_interpreter_path" value="node" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
@@ -134,7 +155,11 @@
       <workItem from="1564562892830" duration="1202000" />
       <workItem from="1564596481009" duration="1357000" />
       <workItem from="1564607089224" duration="15281000" />
-      <workItem from="1564675727049" duration="28048000" />
+      <workItem from="1564675727049" duration="28326000" />
+      <workItem from="1564771061626" duration="12964000" />
+      <workItem from="1564797069836" duration="1359000" />
+      <workItem from="1564827705057" duration="12379000" />
+      <workItem from="1564857689670" duration="7943000" />
     </task>
     <task id="LOCAL-00001" summary="Add sign up and login page.">
       <created>1563774780515</created>
@@ -157,7 +182,14 @@
       <option name="project" value="LOCAL" />
       <updated>1564706269703</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="Added required and isActive fields on modal view">
+      <created>1564710335740</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1564710335740</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -180,6 +212,7 @@
     <MESSAGE value="Add sign up and login page." />
     <MESSAGE value="Added header, change password and edit profile pages." />
     <MESSAGE value="Added a table with the ability to add, delete, modify entity data Field" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added a table with the ability to add, delete, modify entity data Field" />
+    <MESSAGE value="Added required and isActive fields on modal view" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added required and isActive fields on modal view" />
   </component>
 </project>

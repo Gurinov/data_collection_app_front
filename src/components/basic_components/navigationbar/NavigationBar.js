@@ -9,7 +9,7 @@ class NavigationBar extends React.Component {
     }
 
     logout() {
-        UserService.logoout();
+        UserService.logout();
     }
 
     render() {

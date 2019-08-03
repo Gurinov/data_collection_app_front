@@ -1,11 +1,12 @@
 import axios from 'axios';
 
 class UserService {
-    LOGIN_END_POINT = 'http://localhost:8080/users/login';
-    REGISTRATION_END_POINT = 'http://localhost:8080/users/signup';
-    EDIT_PROFILE_END_POINT = 'http://localhost:8080/users';
-    GET_BY_TOKEN_END_POINT = 'http://localhost:8080/users/byToken';
-    CHANGE_PASSWORD_END_POINT = 'http://localhost:8080/users/password';
+    SERVER_PATH = 'http://192.168.100.138:8080/';
+    LOGIN_END_POINT = this.SERVER_PATH + 'users/login';
+    REGISTRATION_END_POINT = this.SERVER_PATH + 'users/signup';
+    EDIT_PROFILE_END_POINT = this.SERVER_PATH + 'users';
+    GET_BY_TOKEN_END_POINT = this.SERVER_PATH + 'users/byToken';
+    CHANGE_PASSWORD_END_POINT = this.SERVER_PATH + 'users/password';
 
     findUserByToken(){
         return axios.get(this.GET_BY_TOKEN_END_POINT,{headers: {
@@ -63,7 +64,7 @@ class UserService {
         return localStorage.getItem('token')
     }
 
-    logoout() {
+    logout() {
         localStorage.removeItem('token');
     }
 

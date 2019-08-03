@@ -2,7 +2,7 @@ import React from "react";
 import Input from "../../basic_components/input/Input";
 import Logo from "../../basic_components/logo/Logo";
 import Checkbox from "../../basic_components/checkbox/Checkbox";
-import {Link, Redirect} from "react-router-dom";
+import {Link} from "react-router-dom";
 import {Button} from "bootstrap-4-react";
 import UserService from "../../../service/UserService";
 import is from 'is_js';
@@ -71,10 +71,6 @@ class Login extends React.Component {
     }
 
     render() {
-        if (UserService.getToken()) {
-            return <Redirect to="/fields"/>
-        }
-
         return (
             <div className="container form">
                 <div className="form__body">
@@ -106,7 +102,6 @@ class Login extends React.Component {
                     </div>
                 </div>
             </div>
-
         );
     }
 }

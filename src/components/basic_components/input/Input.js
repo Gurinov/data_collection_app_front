@@ -1,5 +1,5 @@
 import React from "react";
-import {Form} from 'bootstrap-4-react';
+import {Form} from 'react-bootstrap';
 
 class Input extends React.Component {
 
@@ -9,20 +9,25 @@ class Input extends React.Component {
         if (this.props.label) {
             label =
                 <div>
-                    <label className="text-muted">{this.props.label}</label>
+                    <label className="text-muted custom_input">{this.props.label}</label>
                     {this.props.required ? <label className="text-danger">*</label> : null}
                 </div>
         }
         if (this.props.error) {
             error = <label className="text-danger">{this.props.error}</label>
-
         }
 
         return (
-            <div className="label text-left">
+            <div className="text-left">
                 {label}
-                <Form.Input placeholder={this.props.placeholder} name={this.props.name} type={this.props.type}
-                            defaultValue={this.props.value} onChange={this.props.onChange}/>
+                <Form.Control
+                    id={this.props.id}
+                    name={this.props.name}
+                    type={this.props.type}
+                    placeholder={this.props.placeholder}
+                    value={this.props.defaultValue}
+                    onChange={this.props.onChange}
+                    disabled={this.props.disabled}/>
                 {error}
             </div>
         )

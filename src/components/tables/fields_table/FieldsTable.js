@@ -29,7 +29,7 @@ class FieldsTable extends React.Component {
     }
 
     updateFieldTable() {
-        FieldService.getAllFields(this.state.page, this.state.size).then(
+        FieldService.getFieldsForPagination(this.state.page, this.state.size).then(
             (response) => {
                 this.setState({
                     fields: response.data.fields,
@@ -37,7 +37,7 @@ class FieldsTable extends React.Component {
                     startFieldNumber: response.data.start_field_number,
                     finishFieldNumber: response.data.finish_field_number,
                     pageCount: response.data.page_count
-                });
+                }, () => {this.render()});
             }
         )
     }

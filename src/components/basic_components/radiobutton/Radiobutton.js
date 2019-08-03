@@ -8,7 +8,7 @@ class Radiobutton extends React.Component {
         if (this.props.label) {
             label =
                 <div>
-                    <label className="text-muted">{this.props.label}</label>
+                    <label className="text-muted custom_input">{this.props.label}</label>
                     {this.props.required ? <label className="text-danger">*</label> : null}
                 </div>
         }
@@ -18,15 +18,20 @@ class Radiobutton extends React.Component {
         }
 
         return (
-            <div className="label text-left">
+            <div className="text-left">
                 {label}
                 {
                     this.props.options.map(option =>
                         <Form.Check
+                            custom
                             type='radio'
-                            key={option.text}
-                            name={this.props.label}
+                            value={option.text}
+                            key={option.id}
+                            id={option.id}
+                            name={this.props.id}
                             label={option.text}
+                            onChange={this.props.onChange}
+                            disabled={this.props.isDisabled}
                         />
                     )
                 }

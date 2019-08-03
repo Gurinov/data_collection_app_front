@@ -31,7 +31,7 @@ class ChangePassword extends React.Component {
                 })
             },
             (error) => {
-                UserService.logoout();
+                UserService.logout();
                 this.props.history.push('/');
             }
         );

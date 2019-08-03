@@ -174,7 +174,7 @@ class AddEditFieldModal extends React.Component {
                         <label htmlFor="label">Options</label><label className="text-danger">*</label>
                     </div>
                     <div className="col-md-7 text-left">
-                        <Textarea name="options" rows='4' handleChange={this.handleChangeOptions}
+                        <Textarea name="options" rows='4' onChange={this.handleChangeOptions}
                                   error={this.state.optionsError}/>
                     </div>
                 </div>
@@ -202,7 +202,7 @@ class AddEditFieldModal extends React.Component {
                                 <label htmlFor="label">Type</label><label className="text-danger">*</label>
                             </div>
                             <div className="col-md-7 text-left">
-                                <Combobox name="type" handleChange={this.setFieldType}
+                                <Combobox name="type" onChange={this.setFieldType}
                                           defaultValue={this.state.field.type} options={this.state.selectedOptions}/>
                             </div>
                         </div>
