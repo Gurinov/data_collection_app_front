@@ -44,7 +44,7 @@ class QuestionnairePage extends React.Component {
                 response.data.forEach(field => {
                     if (field.active) {
                         (field.type === "RADIOBUTTON") ? answers[field.id] = this.state.answers[field.id] :
-                            ((field.type === "COMBOBOX") && (field.options[0]))? answers[field.id] = field.options[0].text :
+                            ((field.type === "COMBOBOX") && (field.options[0].text))? answers[field.id] = field.options[0].text :
                                 (field.type === "CHECKBOX") ? answers[field.id] = false.toString() : answers[field.id] = '';
                         if (field.required) {
                             requiredFields.push({id: field.id})
@@ -83,7 +83,7 @@ class QuestionnairePage extends React.Component {
         let isValid = true;
         this.setState({error: ''});
         this.state.fields.forEach(field => {
-            if ((field.required && this.state.answers[field.id] && (this.state.answers[field.id].length === 0))) {
+            if (field.required && !this.state.answers[field.id]) {
                 this.setState({error: 'Required fields can not be empty'});
                 isValid = false;
             }
