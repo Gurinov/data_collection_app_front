@@ -2,28 +2,24 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="5e8880fc-bb8c-49a4-9801-df1a9e557611" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/components/forms/congratulation/Congratulation.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/forms/questionnaire_page/QuestionnairePage.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/service/ResponseService.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/tables/responses_table/ResponsesTable.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/service/ResponseWebsocketService.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/basic_components/checkbox/Checkbox.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/basic_components/checkbox/Checkbox.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/basic_components/combobox/Combobox.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/basic_components/combobox/Combobox.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/basic_components/input/Input.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/basic_components/input/Input.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/basic_components/navigationbar/NavigationBar.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/basic_components/navigationbar/NavigationBar.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/basic_components/radiobutton/Radiobutton.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/basic_components/radiobutton/Radiobutton.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/basic_components/textarea/Textarea.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/basic_components/textarea/Textarea.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/forms/FormMain.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/forms/FormMain.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/forms/FormMain.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/forms/FormMain.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/forms/chenge_password/ChangePassword.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/forms/chenge_password/ChangePassword.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/forms/edit_profile/EditProfile.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/forms/edit_profile/EditProfile.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/forms/login/Login.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/forms/login/Login.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/forms/questionnaire_page/QuestionnairePage.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/forms/questionnaire_page/QuestionnairePage.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/modal_boxes/AddEditFieldModal.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/modal_boxes/AddEditFieldModal.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/tables/TablesMain.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/tables/TablesMain.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/tables/TablesMain.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/tables/TablesMain.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/tables/fields_table/FieldsTable.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/tables/fields_table/FieldsTable.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/routing/AppRouting.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/routing/AppRouting.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/service/FieldService.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/service/FieldService.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/service/UserService.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/service/UserService.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/service/ResponseService.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/service/ResponseService.js" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -159,7 +155,9 @@
       <workItem from="1564771061626" duration="12964000" />
       <workItem from="1564797069836" duration="1359000" />
       <workItem from="1564827705057" duration="12379000" />
-      <workItem from="1564857689670" duration="7943000" />
+      <workItem from="1564857689670" duration="8951000" />
+      <workItem from="1564916009749" duration="953000" />
+      <workItem from="1564927117345" duration="32220000" />
     </task>
     <task id="LOCAL-00001" summary="Add sign up and login page.">
       <created>1563774780515</created>
@@ -189,7 +187,14 @@
       <option name="project" value="LOCAL" />
       <updated>1564710335740</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="Added questionnaire page">
+      <created>1564874018521</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1564874018521</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -213,6 +218,7 @@
     <MESSAGE value="Added header, change password and edit profile pages." />
     <MESSAGE value="Added a table with the ability to add, delete, modify entity data Field" />
     <MESSAGE value="Added required and isActive fields on modal view" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added required and isActive fields on modal view" />
+    <MESSAGE value="Added questionnaire page" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added questionnaire page" />
   </component>
 </project>

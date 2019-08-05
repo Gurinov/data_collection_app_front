@@ -3,16 +3,15 @@ import { Form } from 'react-bootstrap';
 
 class Checkbox extends React.Component {
     render() {
-        console.log(this.props.defaultChecked)
-
         return (
             <div className="custom_input">
                 <Form.Check
                     custom
                     id={this.props.id}
-                    checked={this.props.defaultChecked === "true"}
+                    checked={this.props.defaultChecked}
+                    defaultValue={this.props.defaultValue}
                     onChange={this.props.onChange}
-                    disabled={this.props.isDisabled}
+                    disabled={this.props.disabled}
                     label={this.props.label}
                 />
             </div>

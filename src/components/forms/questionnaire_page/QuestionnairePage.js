@@ -7,7 +7,7 @@ import Combobox from "../../basic_components/combobox/Combobox";
 import Radiobutton from "../../basic_components/radiobutton/Radiobutton";
 import {Button} from "bootstrap-4-react";
 import FieldService from "../../../service/FieldService";
-import ResponseService from "../../../service/ResponseService";
+import ResponseWebsocketService from "../../../service/ResponseWebsocketService";
 
 class QuestionnairePage extends React.Component {
 
@@ -26,10 +26,13 @@ class QuestionnairePage extends React.Component {
         this.checkboxHandleChange = this.checkboxHandleChange.bind(this);
         this.isValidForm = this.isValidForm.bind(this);
         this.updateForm = this.updateForm.bind(this);
+        this.callback = this.callback.bind(this);
     }
 
     componentDidMount() {
         this.updateForm();
+        ResponseWebsocketService.callback = this.callback;
+        ResponseWebsocketService.connect();
     }
 
     updateForm() {
@@ -37,12 +40,15 @@ class QuestionnairePage extends React.Component {
             (response) => {
                 let answers = [];
                 let requiredFields = [];
+                console.log(response.data)
                 response.data.forEach(field => {
-                    (field.type === "RADIOBUTTON") ? answers[field.id] = this.state.answers[field.id] :
-                        (field.type === "COMBOBOX") ? answers[field.id] = field.options[0].text :
-                            (field.type === "CHECKBOX") ? answers[field.id] = false.toString() : answers[field.id] = '';
-                    if (field.required) {
-                        requiredFields.push({id: field.id})
+                    if (field.active) {
+                        (field.type === "RADIOBUTTON") ? answers[field.id] = this.state.answers[field.id] :
+                            ((field.type === "COMBOBOX") && (field.options[0]))? answers[field.id] = field.options[0].text :
+                                (field.type === "CHECKBOX") ? answers[field.id] = false.toString() : answers[field.id] = '';
+                        if (field.required) {
+                            requiredFields.push({id: field.id})
+                        }
                     }
                 });
                 this.setState({
@@ -54,13 +60,18 @@ class QuestionnairePage extends React.Component {
         );
     }
 
+    callback = function (message) {
+        if (message) {
+            this.props.history.push('/congratulation');
+        }
+
+    };
+
     submitForm() {
         if (this.isValidForm()) {
-            ResponseService.createResponse(this.state.answers).then(
-                (response) => {
-                    this.props.history.push('/congratulation');
-                }
-            )
+            let response = {};
+            response.answer = this.state.answers;
+            ResponseWebsocketService.send(response);
         }
     }
 
@@ -72,7 +83,7 @@ class QuestionnairePage extends React.Component {
         let isValid = true;
         this.setState({error: ''});
         this.state.fields.forEach(field => {
-            if ((field.required && !this.state.answers[field.id])) {
+            if ((field.required && this.state.answers[field.id] && (this.state.answers[field.id].length === 0))) {
                 this.setState({error: 'Required fields can not be empty'});
                 isValid = false;
             }
@@ -116,85 +127,99 @@ class QuestionnairePage extends React.Component {
 
     render() {
         let allFields = [];
+        // eslint-disable-next-line array-callback-return
         this.state.fields.map(field => {
+            // eslint-disable-next-line default-case
             switch (field.type) {
                 case "SINGLE_LINE_TEXT":
                     allFields.push(
-                        <Input
-                            id={field.id}
-                            label={field.label}
-                            name={field.label}
-                            defaultValue={this.state.answers[field.id]}
-                            onChange={this.handleChange}
-                            disabled={field.disabled}
-                            required={field.required}
-                        />
+                        <div key={field.id}>
+                            <Input
+                                id={field.id}
+                                label={field.label}
+                                name={field.label}
+                                defaultValue={this.state.answers[field.id]}
+                                onChange={this.handleChange}
+                                disabled={!field.active}
+                                required={field.required}
+                            />
+                        </div>
                     );
                     break;
                 case "MULTILINE_TEXT":
                     allFields.push(
-                        <Textarea
-                            rows="4"
-                            id={field.id}
-                            label={field.label}
-                            name={field.label}
-                            defaultValue={this.state.answers[field.id]}
-                            onChange={this.handleChange}
-                            disabled={field.disabled}
-                            required={field.required}
-                        />
+                        <div key={field.id}>
+                            <Textarea
+                                rows="4"
+                                id={field.id}
+                                label={field.label}
+                                name={field.label}
+                                defaultValue={this.state.answers[field.id]}
+                                onChange={this.handleChange}
+                                disabled={!field.active}
+                                required={field.required}
+                            />
+                        </div>
                     );
                     break;
                 case "RADIOBUTTON":
                     allFields.push(
-                        <Radiobutton
-                            id={field.id}
-                            label={field.label}
-                            name={field.label}
-                            onChange={this.radiobuttonHandleChange}
-                            disabled={field.disabled}
-                            required={field.required}
-                            options={field.options}
-                        />
+                        <div key={field.id}>
+                            <Radiobutton
+                                id={field.id}
+                                label={field.label}
+                                name={field.label}
+                                onChange={this.radiobuttonHandleChange}
+                                disabled={!field.active}
+                                required={field.required}
+                                options={field.options}
+                            />
+                        </div>
                     );
                     break;
                 case "CHECKBOX":
                     allFields.push(
-                        <Checkbox
-                            id={field.id}
-                            label={field.label}
-                            defaultChecked={this.state.answers[field.id]}
-                            onChange={this.checkboxHandleChange}
-                            disabled={field.disabled}
-                        />
+                        <div key={field.id}>
+                            <Checkbox
+                                id={field.id}
+                                label={field.label}
+                                defaultChecked={this.state.answers[field.id] === "true"}
+                                onChange={this.checkboxHandleChange}
+                                disabled={!field.active}
+                            />
+                        </div>
                     );
                     break;
                 case "COMBOBOX":
                     allFields.push(
-                        <Combobox
-                            id={field.id}
-                            label={field.label}
-                            name={field.label}
-                            defaultValue={this.state.answers[field.id]}
-                            onChange={this.handleChange}
-                            disabled={field.disabled}
-                            required={field.required}
-                            options={field.options}
-                        />
+                        <div key={field.id}>
+                            <Combobox
+                                id={field.id}
+                                label={field.label}
+                                name={field.label}
+                                defaultValue={this.state.answers[field.id]}
+                                onChange={this.handleChange}
+                                disabled={!field.active}
+                                required={field.required}
+                                options={field.options}
+                            />
+                        </div>
                     );
                     break;
                 case "DATE":
                     allFields.push(
-                        <Input
-                            id={field.id}
-                            type="date"
-                            label={field.label}
-                            name={field.label}
-                            defaultValue={this.state.answers[field.id]}
-                            onChange={this.handleChange}
-                            disabled={field.disabled}
-                            required={field.required}
-                        />
+                        <div key={field.id}>
+                            <Input
+                                id={field.id}
+                                type="date"
+                                label={field.label}
+                                name={field.label}
+                                defaultValue={this.state.answers[field.id]}
+                                onChange={this.handleChange}
+                                disabled={!field.active}
+                                required={field.required}
+                            />
+                        </div>
                     );
                     break;
             }

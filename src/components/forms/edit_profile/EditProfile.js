@@ -80,17 +80,17 @@ class EditProfile extends React.Component{
                             <p>Edit Profile</p>
                         </div>
                         <div className="form_body__element">
-                            <Input name="firstName" label="First Name" value={this.state.firstName} onChange={this.handleChange}/>
+                            <Input name="firstName" label="First Name" defaultValue={this.state.firstName} onChange={this.handleChange}/>
                         </div>
                         <div className="form_body__element">
-                            <Input name="lastName" label="Last Name" value={this.state.lastName} onChange={this.handleChange}/>
+                            <Input name="lastName" label="Last Name" defaultValue={this.state.lastName} onChange={this.handleChange}/>
                         </div>
                         <div className="form_body__element">
-                            <Input name="email" type="email" label="Email" value={this.state.email}
+                            <Input name="email" type="email" label="Email" defaultValue={this.state.email}
                                    onChange={this.handleChange} error={this.state.emailError} required/>
                         </div>
                         <div className="form_body__element">
-                            <Input name="phone" label="Phone Number" value={this.state.phone} onChange={this.handleChange}/>
+                            <Input name="phone" label="Phone Number" defaultValue={this.state.phone} onChange={this.handleChange}/>
                         </div>
                         <div className="form_body__element form__label">
                             <Button primary onClick={this.submitForm}>Save</Button>

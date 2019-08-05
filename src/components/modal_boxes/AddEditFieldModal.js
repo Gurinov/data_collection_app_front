@@ -14,12 +14,12 @@ class AddEditFieldModal extends React.Component {
             show: false,
             modalTitle: this.props.modalTitle,
             field: {
-                id: props.field ? props.field.id : null,
-                label: props.field ? props.field.label : '',
-                type: props.field ? props.field.type : 'SINGLE_LINE_TEXT',
-                required: props.field ? props.field.required : false,
-                active: props.field ? props.field.active : false,
-                options: props.field ? props.field.options : []
+                id: this.props.fieldId ? this.props.fieldId : null,
+                label: '',
+                type: 'SINGLE_LINE_TEXT',
+                required: false,
+                active: false,
+                options: []
             },
             selectedOptions: [
                 {text: 'SINGLE_LINE_TEXT'},
@@ -49,7 +49,26 @@ class AddEditFieldModal extends React.Component {
     }
 
     handleShow() {
-        this.setState({show: true});
+        if (this.props.fieldId) {
+            FieldService.getFieldById(this.props.fieldId).then(
+                (response) => {
+                    this.setState({
+                        ...this.state,
+                        show: true,
+                        field: {
+                            id: response.data.id,
+                            label: response.data.label,
+                            type: response.data.type,
+                            required: response.data.required,
+                            active: response.data.active,
+                            options: response.data.options
+                        }
+                    })
+                }
+            );
+        } else {
+            this.setState({show: true});
+        }
     }
 
     setFieldType(event) {
@@ -193,7 +212,7 @@ class AddEditFieldModal extends React.Component {
                                 <label htmlFor="label">Label</label><label className="text-danger">*</label>
                             </div>
                             <div className="col-md-7 text-left">
-                                <Input name="label" type="text" value={this.state.field.label}
+                                <Input name="label" type="text" defaultValue={this.state.field.label}
                                        onChange={this.handleChange} error={this.state.labelError} required/>
                             </div>
                         </div>
@@ -209,10 +228,18 @@ class AddEditFieldModal extends React.Component {
                         {options}
                         <div className="row form__element ">
                             <div className="col-md-6 offset-md-3 checkboxes">
-                                <Checkbox name="required" label="Required" active={this.state.field.required}
-                                          handleChange={this.handleChangeChecked('required')}/>
-                                <Checkbox name="active" label="Is Active" active={this.state.field.active}
-                                          handleChange={this.handleChangeChecked('active')}/>
+                                <Checkbox
+                                    id="required"
+                                    label="Required"
+                                    defaultChecked={this.state.field.required}
+                                    onChange={this.handleChangeChecked('required')}
+                                />
+                                <Checkbox
+                                    id="active"
+                                    label="Is Active"
+                                    defaultChecked={this.state.field.active}
+                                    onChange={this.handleChangeChecked('active')}
+                                />
                             </div>
                         </div>
 

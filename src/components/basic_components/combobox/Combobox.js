@@ -25,7 +25,7 @@ class Combobox extends React.Component {
                               name={this.props.name}
                               onChange={this.props.onChange}
                               value={this.props.defaultValue}
-                              disabled={this.props.isDisabled}
+                              disabled={this.props.disabled}
                 >
                     {
                         this.props.options.map(option =>

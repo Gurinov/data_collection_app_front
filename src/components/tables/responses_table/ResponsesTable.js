@@ -1,10 +1,11 @@
 import React from "react";
 import {Pagination, Table} from "react-bootstrap";
 import FieldService from "../../../service/FieldService";
-import AddEditFieldModal from "../../modal_boxes/AddEditFieldModal";
 import Combobox from "../../basic_components/combobox/Combobox";
+import ResponseService from "../../../service/ResponseService";
+import ResponseWebsocketService from "../../../service/ResponseWebsocketService";
 
-class FieldsTable extends React.Component {
+class ResponsesTable extends React.Component {
 
     constructor(props) {
         super(props);
@@ -12,54 +13,62 @@ class FieldsTable extends React.Component {
             page: 1,
             size: 5,
             fields: [],
-            allFieldCount: 0,
+            responses: [],
+            allResponsesCount: 0,
             startFieldNumber: 0,
             finishFieldNumber: 0,
             pageCount: 1,
         };
-        this.updateFieldTable = this.updateFieldTable.bind(this);
+        this.updateResponsesTable = this.updateResponsesTable.bind(this);
         this.setTableSize = this.setTableSize.bind(this);
         this.togglePage = this.togglePage.bind(this);
         this.setPrevPage = this.setPrevPage.bind(this);
         this.setNextPage = this.setNextPage.bind(this);
+        ResponseWebsocketService.connect();
+        ResponseWebsocketService.callback = this.callback.bind(this);
     }
 
     componentDidMount() {
-        this.updateFieldTable();
-    }
-
-    updateFieldTable() {
-        FieldService.getFieldsForPagination(this.state.page, this.state.size).then(
+        FieldService.getAllFields().then(
             (response) => {
                 this.setState({
-                    fields: response.data.fields,
-                    allFieldCount: response.data.fields_count,
-                    startFieldNumber: response.data.start_field_number,
-                    finishFieldNumber: response.data.finish_field_number,
-                    pageCount: response.data.page_count
-                }, () => {this.render()});
+                    ...this.state,
+                    fields: response.data
+                });
+                this.updateResponsesTable();
             }
-        )
+        );
     }
 
-    deleteField(id) {
-        FieldService.deleteField(id).then(
+    callback = function (message) {
+        if (message) {
+            this.updateResponsesTable();
+        }
+    };
+
+    updateResponsesTable() {
+        ResponseService.getAllForPagination(this.state.page, this.state.size).then(
             (response) => {
-                if ((this.state.allFieldCount - 1) % this.state.size === 0) {
-                    this.setPrevPage();
-                } else {
-                    this.updateFieldTable();
-                }
+                this.setState({
+                    responses: response.data.responses,
+                    allResponsesCount: response.data.count,
+                    startFieldNumber: response.data.start_number,
+                    finishFieldNumber: response.data.finish_number,
+                    pageCount: response.data.page_count
+                }, () => {
+                    this.render()
+                });
             }
         )
     }
 
     setTableSize(event) {
+        console.log(111)
         this.setState({
             size: event.target.value,
             page: 1
         }, () => {
-            this.updateFieldTable();
+            this.updateResponsesTable();
         });
     }
 
@@ -68,7 +77,7 @@ class FieldsTable extends React.Component {
             this.setState({
                 page: Number(e.target.text)
             }, () => {
-                this.updateFieldTable();
+                this.updateResponsesTable();
             });
         }
     }
@@ -77,7 +86,7 @@ class FieldsTable extends React.Component {
         this.setState((state) => ({
             page: state.page - 1
         }), () => {
-            this.updateFieldTable();
+            this.updateResponsesTable();
         });
     }
 
@@ -85,7 +94,7 @@ class FieldsTable extends React.Component {
         this.setState((state) => ({
             page: state.page + 1
         }), () => {
-            this.updateFieldTable();
+            this.updateResponsesTable();
         });
     }
 
@@ -101,34 +110,34 @@ class FieldsTable extends React.Component {
         return (
             <div className="custom_table">
                 <div className="table__element">
-                    <p className="table__element__label">Fields</p>
-                    <AddEditFieldModal modalTitle="Add Field" updateTable={this.updateFieldTable}/>
+                    <p className="table__element__label">Responses</p>
                 </div>
                 <div className="table__body">
                     <Table striped hover>
                         <thead>
                         <tr>
-                            <th>Label</th>
-                            <th>Type</th>
-                            <th>Required</th>
-                            <th>Is Active</th>
-                            <th></th>
+                            {
+                                this.state.fields.map(field =>
+                                    <th key={field.id}>
+                                        {field.label}
+                                    </th>
+                                )
+                            }
                         </tr>
                         </thead>
                         <tbody>
                         {
-                            this.state.fields.map(field =>
-                                <tr key={field.id}>
-                                    <td>{field.label}</td>
-                                    <td>{field.type}</td>
-                                    <td>{Boolean(field.required).toString()}</td>
-                                    <td>{Boolean(field.active).toString()}</td>
-                                    <td className="table__buttons">
-                                        <AddEditFieldModal fieldId={field.id} modalTitle="Edit Field"
-                                                           updateTable={this.updateFieldTable}/>
-                                        <i className="fa fa-trash-alt"
-                                           onClick={(() => this.deleteField(field.id))}
-                                        />
+                            this.state.responses.map(response =>
+                                <tr key={response.id}>
+                                    {
+                                        this.state.fields.map(field =>
+                                            <td key={response.id + '' + field.id}>
+                                                {response.answer[field.id] ? response.answer[field.id] : 'N/A'}
+                                            </td>
+                                        )
+                                    }
+                                    <td>
+
                                     </td>
                                 </tr>
                             )
@@ -139,7 +148,7 @@ class FieldsTable extends React.Component {
                 <div className="table__element">
                     <div className="table__element__info">
                         <p>
-                            {this.state.startFieldNumber}-{this.state.finishFieldNumber} of {this.state.allFieldCount}
+                            {this.state.startFieldNumber}-{this.state.finishFieldNumber} of {this.state.allResponsesCount}
                         </p>
                     </div>
                     <div className="table__element__pagination">
@@ -160,4 +169,4 @@ class FieldsTable extends React.Component {
     }
 }
 
-export default FieldsTable;
+export default ResponsesTable;

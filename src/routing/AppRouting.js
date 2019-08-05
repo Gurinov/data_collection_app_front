@@ -18,6 +18,7 @@ class AppRouting extends React.Component {
                     <Route exact path={"/edit-profile"} component={FormMain}/>
                     <Route exact path={"/change-password"} component={FormMain}/>
                     <Route exact path={"/fields"} component={TablesMain}/>
+                    <Route exact path={"/responses"} component={TablesMain}/>
                     <Redirect to="/"/>
                 </Switch>
         } else {

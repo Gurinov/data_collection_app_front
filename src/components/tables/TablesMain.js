@@ -4,6 +4,7 @@ import {Router} from "react-router-dom";
 import "./TablesMain.css"
 import Header from "../basic_components/header/Header";
 import FieldsTable from "./fields_table/FieldsTable";
+import ResponsesTable from "./responses_table/ResponsesTable";
 
 class TablesMain extends React.Component {
     render() {
@@ -14,6 +15,7 @@ class TablesMain extends React.Component {
                     <Router history={this.props.history}>
                         <Switch>
                             <Route path={"/fields"} component={FieldsTable}/>
+                            <Route path={"/responses"} component={ResponsesTable}/>
                         </Switch>
                     </Router>
                 </div>

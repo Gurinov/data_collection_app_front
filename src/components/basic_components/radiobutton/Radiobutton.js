@@ -31,7 +31,7 @@ class Radiobutton extends React.Component {
                             name={this.props.id}
                             label={option.text}
                             onChange={this.props.onChange}
-                            disabled={this.props.isDisabled}
+                            disabled={this.props.disabled}
                         />
                     )
                 }
