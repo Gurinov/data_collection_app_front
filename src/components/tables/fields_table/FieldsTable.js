@@ -45,7 +45,7 @@ class FieldsTable extends React.Component {
     deleteField(id) {
         FieldService.deleteField(id).then(
             (response) => {
-                if ((this.state.allFieldCount - 1) % this.state.size === 0) {
+                if (((this.state.allFieldCount - 1) % this.state.size === 0) && (this.state.page > 1)) {
                     this.setPrevPage();
                 } else {
                     this.updateFieldTable();
@@ -91,6 +91,7 @@ class FieldsTable extends React.Component {
 
     render() {
         let paginationItems = [];
+        let fields = [];
         for (let i = 1; i <= this.state.pageCount; i++) {
             paginationItems.push(
                 <Pagination.Item key={i} active={i === this.state.page} onClick={this.togglePage}>
@@ -98,6 +99,26 @@ class FieldsTable extends React.Component {
                 </Pagination.Item>
             );
         }
+        if (this.state.fields) {
+            this.state.fields.map(field =>
+                fields.push(
+                    <tr key={field.id}>
+                        <td>{field.label}</td>
+                        <td>{field.type}</td>
+                        <td>{Boolean(field.required).toString()}</td>
+                        <td>{Boolean(field.active).toString()}</td>
+                        <td className="table__buttons">
+                            <AddEditFieldModal fieldId={field.id} modalTitle="Edit Field"
+                                               updateTable={this.updateFieldTable}/>
+                            <i className="fa fa-trash-alt"
+                               onClick={(() => this.deleteField(field.id))}
+                            />
+                        </td>
+                    </tr>
+                )
+            )
+        }
+
         return (
             <div className="custom_table">
                 <div className="table__element">
@@ -116,23 +137,7 @@ class FieldsTable extends React.Component {
                         </tr>
                         </thead>
                         <tbody>
-                        {
-                            this.state.fields.map(field =>
-                                <tr key={field.id}>
-                                    <td>{field.label}</td>
-                                    <td>{field.type}</td>
-                                    <td>{Boolean(field.required).toString()}</td>
-                                    <td>{Boolean(field.active).toString()}</td>
-                                    <td className="table__buttons">
-                                        <AddEditFieldModal fieldId={field.id} modalTitle="Edit Field"
-                                                           updateTable={this.updateFieldTable}/>
-                                        <i className="fa fa-trash-alt"
-                                           onClick={(() => this.deleteField(field.id))}
-                                        />
-                                    </td>
-                                </tr>
-                            )
-                        }
+                            {fields}
                         </tbody>
                     </Table>
                 </div>

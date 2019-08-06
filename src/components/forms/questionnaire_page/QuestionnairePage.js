@@ -83,7 +83,7 @@ class QuestionnairePage extends React.Component {
         let isValid = true;
         this.setState({error: ''});
         this.state.fields.forEach(field => {
-            if (field.required && !this.state.answers[field.id]) {
+            if (field.active && field.required && !this.state.answers[field.id]) {
                 this.setState({error: 'Required fields can not be empty'});
                 isValid = false;
             }

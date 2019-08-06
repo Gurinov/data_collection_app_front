@@ -1,13 +1,14 @@
 import React from "react";
 import "./Logo.css"
+import {Link} from "react-router-dom";
 
 class Logo extends React.Component{
     render() {
         return (
-            <div className="logo">
+            <Link className="logo" to="/" style={{ textDecoration: 'none' }}>
                 <span className="logo__black">Logo</span>
                 <span className="logo__blue">Type</span>
-            </div>
+            </Link>
         );
     }
 }

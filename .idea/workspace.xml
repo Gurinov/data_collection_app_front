@@ -1,9 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="5e8880fc-bb8c-49a4-9801-df1a9e557611" name="Default Changelist" comment="Fix validate form">
+    <list default="true" id="5e8880fc-bb8c-49a4-9801-df1a9e557611" name="Default Changelist" comment="Fix edit">
+      <change afterPath="$PROJECT_DIR$/src/service/Links.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/basic_components/logo/Logo.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/basic_components/logo/Logo.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/forms/questionnaire_page/QuestionnairePage.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/forms/questionnaire_page/QuestionnairePage.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/modal_boxes/AddEditFieldModal.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/modal_boxes/AddEditFieldModal.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/tables/fields_table/FieldsTable.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/tables/fields_table/FieldsTable.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/service/FieldService.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/service/FieldService.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/service/ResponseService.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/service/ResponseService.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/service/UserService.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/service/UserService.js" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -141,7 +148,8 @@
       <workItem from="1564827705057" duration="12379000" />
       <workItem from="1564857689670" duration="8951000" />
       <workItem from="1564916009749" duration="953000" />
-      <workItem from="1564927117345" duration="35434000" />
+      <workItem from="1564927117345" duration="35647000" />
+      <workItem from="1565104589961" duration="15025000" />
     </task>
     <task id="LOCAL-00001" summary="Add sign up and login page.">
       <created>1563774780515</created>
@@ -185,7 +193,14 @@
       <option name="project" value="LOCAL" />
       <updated>1564975196544</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="Fix validate form">
+      <created>1565004171767</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1565004171767</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -211,6 +226,7 @@
     <MESSAGE value="Added required and isActive fields on modal view" />
     <MESSAGE value="Added questionnaire page" />
     <MESSAGE value="Added responses list page" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added responses list page" />
+    <MESSAGE value="Fix validate form" />
+    <option name="LAST_COMMIT_MESSAGE" value="Fix validate form" />
   </component>
 </project>

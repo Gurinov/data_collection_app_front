@@ -30,7 +30,8 @@ class AddEditFieldModal extends React.Component {
                 {text: 'DATE'}
             ],
             labelError: '',
-            optionsError: ''
+            optionsError: '',
+            optionsText: ''
         };
         this.handleShow = this.handleShow.bind(this);
         this.handleClose = this.handleClose.bind(this);
@@ -42,6 +43,7 @@ class AddEditFieldModal extends React.Component {
         this.isValidLabel = this.isValidLabel.bind(this);
         this.isValidOptions = this.isValidOptions.bind(this);
         this.handleChangeChecked = this.handleChangeChecked.bind(this);
+        this.optionsToText = this.optionsToText.bind(this);
     }
 
     handleClose() {
@@ -52,6 +54,9 @@ class AddEditFieldModal extends React.Component {
         if (this.props.fieldId) {
             FieldService.getFieldById(this.props.fieldId).then(
                 (response) => {
+                    let optionsText = this.optionsToText(response.data.options);
+                    console.log(optionsText)
+                    console.log(response.data)
                     this.setState({
                         ...this.state,
                         show: true,
@@ -62,13 +67,24 @@ class AddEditFieldModal extends React.Component {
                             required: response.data.required,
                             active: response.data.active,
                             options: response.data.options
-                        }
+                        },
+                        optionsText: optionsText
                     })
                 }
             );
         } else {
             this.setState({show: true});
         }
+    }
+
+    optionsToText(options) {
+        let optionText = "";
+        if (options) {
+            options.forEach(option => {
+                optionText += "\n" + option.text
+            });
+        }
+        return optionText.trim();
     }
 
     setFieldType(event) {
@@ -116,12 +132,15 @@ class AddEditFieldModal extends React.Component {
                                 options: []
                             },
                             labelError: '',
-                            optionsError: ''
+                            optionsError: '',
+                            optionsText: ''
                         });
                         this.props.updateTable();
                     }
                 );
             } else {
+                console.log("otpravil")
+                console.log(this.state.field)
                 FieldService.updateField(this.state.field).then(
                     response => {
                         this.props.updateTable();
@@ -141,7 +160,6 @@ class AddEditFieldModal extends React.Component {
             this.setState({labelError: 'This field is required'});
             return false;
         }
-
         this.setState({labelError: ''});
         return true;
     }
@@ -167,10 +185,12 @@ class AddEditFieldModal extends React.Component {
             options.push({'text': text})
         });
         this.setState({
+            ...this.state,
             field: {
                 ...this.state.field,
                 options: options
-            }
+            },
+            optionsText: event.target.value
         });
     }
 
@@ -194,6 +214,7 @@ class AddEditFieldModal extends React.Component {
                     </div>
                     <div className="col-md-7 text-left">
                         <Textarea name="options" rows='4' onChange={this.handleChangeOptions}
+                                  defaultValue={this.state.optionsText}
                                   error={this.state.optionsError}/>
                     </div>
                 </div>
