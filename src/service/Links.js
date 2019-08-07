@@ -1,6 +1,6 @@
 const links = {};
 
-links.SERVER_PATH = 'http://192.168.100.138:8080/';
+links.SERVER_PATH = 'https://questionnaire-portal.herokuapp.com/';
 links.FIELDS_END_POINT = links.SERVER_PATH + 'fields';
 links.LOGIN_END_POINT = links.SERVER_PATH + 'users/login';
 links.REGISTRATION_END_POINT = links.SERVER_PATH + 'users/signup';
