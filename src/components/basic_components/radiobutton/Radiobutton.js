@@ -26,8 +26,8 @@ class Radiobutton extends React.Component {
                             custom
                             type='radio'
                             value={option.text}
-                            key={option.id}
-                            id={option.id}
+                            key={"option" + option.id}
+                            id={"option" + option.id}
                             name={this.props.id}
                             label={option.text}
                             onChange={this.props.onChange}

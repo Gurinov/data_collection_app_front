@@ -40,7 +40,6 @@ class QuestionnairePage extends React.Component {
             (response) => {
                 let answers = [];
                 let requiredFields = [];
-                console.log(response.data)
                 response.data.forEach(field => {
                     if (field.active) {
                         (field.type === "RADIOBUTTON") ? answers[field.id] = this.state.answers[field.id] :
