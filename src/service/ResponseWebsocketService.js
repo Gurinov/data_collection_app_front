@@ -3,7 +3,7 @@ import * as Stomp from 'stompjs';
 import axios from "axios";
 
 const ResponseWebsocketService = {};
-ResponseWebsocketService.SERVER_PATH = 'http://192.168.100.138:8080/websocket';
+ResponseWebsocketService.SERVER_PATH = 'https://questionnaire-portal.herokuapp.com/websocket';
 
 ResponseWebsocketService.stomp = null;
 
