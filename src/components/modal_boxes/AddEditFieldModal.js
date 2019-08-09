@@ -31,6 +31,7 @@ class AddEditFieldModal extends React.Component {
             ],
             labelError: '',
             optionsError: '',
+            checksError: '',
             optionsText: ''
         };
         this.handleShow = this.handleShow.bind(this);
@@ -42,6 +43,7 @@ class AddEditFieldModal extends React.Component {
         this.isValidForm = this.isValidForm.bind(this);
         this.isValidLabel = this.isValidLabel.bind(this);
         this.isValidOptions = this.isValidOptions.bind(this);
+        this.isValidChecks = this.isValidChecks.bind(this);
         this.handleChangeChecked = this.handleChangeChecked.bind(this);
         this.optionsToText = this.optionsToText.bind(this);
     }
@@ -133,14 +135,13 @@ class AddEditFieldModal extends React.Component {
                             },
                             labelError: '',
                             optionsError: '',
+                            checksError: '',
                             optionsText: ''
                         });
                         this.props.updateTable();
                     }
                 );
             } else {
-                console.log("otpravil")
-                console.log(this.state.field)
                 FieldService.updateField(this.state.field).then(
                     response => {
                         this.props.updateTable();
@@ -152,7 +153,9 @@ class AddEditFieldModal extends React.Component {
     }
 
     isValidForm() {
-        return this.isValidLabel(this.state.field.label) && this.isValidOptions(this.state.field.options);
+        return this.isValidLabel(this.state.field.label) &&
+               this.isValidOptions(this.state.field.options) &&
+               this.isValidChecks(this.state.field.required, this.state.field.active);
     }
 
     isValidLabel(label) {
@@ -165,15 +168,22 @@ class AddEditFieldModal extends React.Component {
     }
 
     isValidOptions(options) {
-        if ((this.state.field.type === 'RADIOBUTTON'
-            || this.state.field.type === 'COMBOBOX')) {
-
+        if ((this.state.field.type === 'RADIOBUTTON' || this.state.field.type === 'COMBOBOX')) {
             if (options.length === 0) {
                 this.setState({optionsError: 'This field is required'});
                 return false;
             }
         }
         this.setState({optionsError: ''});
+        return true;
+    }
+
+    isValidChecks(required, active) {
+        if (required && !active) {
+            this.setState({checksError: 'Required field must be active.'});
+            return false;
+        }
+        this.setState({checksError: ''});
         return true;
     }
 
@@ -197,6 +207,7 @@ class AddEditFieldModal extends React.Component {
     render() {
         let button;
         let options;
+        let formError;
         if (this.state.field.id == null) {
             button =
                 <Button variant="primary" onClick={this.handleShow}>
@@ -217,6 +228,12 @@ class AddEditFieldModal extends React.Component {
                                   defaultValue={this.state.optionsText}
                                   error={this.state.optionsError}/>
                     </div>
+                </div>
+        }
+        if (this.state.checksError) {
+            formError =
+                <div className="center_element">
+                    <label className="text-danger">{this.state.checksError}</label>
                 </div>
         }
 
@@ -263,7 +280,7 @@ class AddEditFieldModal extends React.Component {
                                 />
                             </div>
                         </div>
-
+                        {formError}
                     </Modal.Body>
                     <Modal.Footer>
                         <Button variant="secondary" onClick={this.handleClose}>
