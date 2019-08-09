@@ -4,6 +4,7 @@ import FieldService from "../../../service/FieldService";
 import Combobox from "../../basic_components/combobox/Combobox";
 import ResponseService from "../../../service/ResponseService";
 import ResponseWebsocketService from "../../../service/ResponseWebsocketService";
+import UserService from "../../../service/UserService";
 
 class ResponsesTable extends React.Component {
 
@@ -19,6 +20,13 @@ class ResponsesTable extends React.Component {
             finishFieldNumber: 0,
             pageCount: 1,
         };
+        UserService.findUserByToken().then(
+            (response) => {},
+            (error) => {
+                UserService.logout();
+                this.props.history.push('/');
+            }
+        );
         this.updateResponsesTable = this.updateResponsesTable.bind(this);
         this.setTableSize = this.setTableSize.bind(this);
         this.togglePage = this.togglePage.bind(this);
@@ -63,7 +71,6 @@ class ResponsesTable extends React.Component {
     }
 
     setTableSize(event) {
-        console.log(111)
         this.setState({
             size: event.target.value,
             page: 1

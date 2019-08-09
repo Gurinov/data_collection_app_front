@@ -3,6 +3,7 @@ import {Pagination, Table} from "react-bootstrap";
 import FieldService from "../../../service/FieldService";
 import AddEditFieldModal from "../../modal_boxes/AddEditFieldModal";
 import Combobox from "../../basic_components/combobox/Combobox";
+import UserService from "../../../service/UserService";
 
 class FieldsTable extends React.Component {
 
@@ -17,6 +18,13 @@ class FieldsTable extends React.Component {
             finishFieldNumber: 0,
             pageCount: 1,
         };
+        UserService.findUserByToken().then(
+            (response) => {},
+            (error) => {
+                UserService.logout();
+                this.props.history.push('/');
+            }
+        );
         this.updateFieldTable = this.updateFieldTable.bind(this);
         this.setTableSize = this.setTableSize.bind(this);
         this.togglePage = this.togglePage.bind(this);
@@ -38,6 +46,10 @@ class FieldsTable extends React.Component {
                     finishFieldNumber: response.data.finish_field_number,
                     pageCount: response.data.page_count
                 }, () => {this.render()});
+            },
+            (error) => {
+                UserService.logout();
+                this.props.history.push('/');
             }
         )
     }
